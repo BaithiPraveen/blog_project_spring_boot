@@ -1,6 +1,5 @@
 package com.blog.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,11 +37,9 @@ public class Posts {
 
     @ManyToOne
     @JoinColumn(name = "category_id")
-    @JsonBackReference("categoryReference")
     private Category category;
 
     @ManyToOne
-    @JsonBackReference("userReference")
     private User users;
 
     @OneToMany(mappedBy = "post",cascade = CascadeType.ALL)

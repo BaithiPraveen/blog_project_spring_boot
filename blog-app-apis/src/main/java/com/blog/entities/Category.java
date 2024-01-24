@@ -1,13 +1,11 @@
 package com.blog.entities;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
-import  com.blog.entities.Posts;
 
 @Setter
 @Getter
@@ -24,8 +22,7 @@ public class Category {
     @Column(name="description")
     private String categoryDescription;
 
-    @OneToMany(mappedBy = "category",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JsonManagedReference("categoryReference")
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Posts> posts = new ArrayList<Posts>();
 
 

@@ -2,11 +2,11 @@ package com.blog.payloads;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import jakarta.validation.constraints.NotNull;
 
 @NoArgsConstructor
 @Getter
@@ -18,6 +18,10 @@ public class UserDto {
     @NotNull(message = "name field is required..!")
     @NotEmpty(message = "name length more then the one character..!")
     private String name;
+
+    @NotNull(message = "username field is required..!")
+    @NotEmpty(message = "username length more then the one character..!")
+    private String username;
 
     @Email(message = "required valid email..!")
     @NotEmpty(message = "email is not empty..!" )

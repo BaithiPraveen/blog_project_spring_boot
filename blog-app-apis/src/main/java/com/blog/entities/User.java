@@ -1,13 +1,9 @@
 package com.blog.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import jakarta.persistence.Id;
-
-
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -24,18 +20,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_name",nullable = false,length = 100)
     private String name;
+
+    private String username;
 
     private String email;
 
     private String password;
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+    private List<Posts> posts = new ArrayList<Posts>();
 
     private String about;
-
-    @OneToMany(mappedBy = "users",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JsonBackReference("userReference")
-    private List<Posts> posts = new ArrayList<Posts>();
 
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(
@@ -44,7 +39,6 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role",referencedColumnName = "id")
     )
     private Set<Role> role = new HashSet<>();
-
 
 
 }

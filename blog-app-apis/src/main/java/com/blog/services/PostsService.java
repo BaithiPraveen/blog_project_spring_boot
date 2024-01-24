@@ -1,6 +1,5 @@
 package com.blog.services;
 
-import com.blog.entities.Posts;
 import com.blog.payloads.PostsDto;
 
 import java.util.List;
